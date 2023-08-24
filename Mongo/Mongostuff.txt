@@ -1,0 +1,75 @@
+cd c/"Program Files"/MongoDB/Server/3.4/bin
+
+cd Documents/coding_dojo/mean/mean_projects/
+
+XBnMGpx3 exam code
+
+./mongod
+
+in another bash terminal
+./mongo
+
+use new_db
+
+db.dropDatabase()
+
+//To create and switch to db
+use test_app
+
+//To show collections
+show collections
+
+//To insert into collection
+db.users.insert({name: "Greg"})
+
+//To drop collection
+db.users.drop()
+
+
+
+
+//to find by id
+db.users.find({_id: ObjectId("58c884edfd36806bf16a28b1")})
+
+
+//to show all in a collection
+db.users.find() or db.users.find({}) or db.users.find().pretty()
+
+db.users.find({location: "Seattle"}).pretty() //will return the complete object along with other keys and vals
+
+//to delete an object in a collection
+db.users.remove({name: "Greg"}) or to remove just 1 of multiple object entries
+db.users.remove({name: "Greg"}, true)
+
+//to update a collection
+db.users.update({}, {})
+
+db.users.update({name: "Greg"}, {location: "Seattle"}) //will delete the other entries in the collection
+
+db.users.update({name: "Greg"}, {$set: {location: "Seattle"}}) //will not delete other entries in a table
+
+
+
+
+//Operators
+//update specific object
+db.users.update({name: "Tiger Woods"}, {$set: {number_of_students: 10}})
+
+//find greater than 3
+db.users.find({number_of_students: {$gt: 3}}).pretty()
+
+//The extra document that contains the operator ({$gt:3}) is being applied to the number of students field of the users collection.
+
+//That key-value pair is the document we pass to the .find() method.
+
+//other operators
+$gt
+$gte
+$lt
+$lte
+$eq //equal
+$ne //not equal
+$in (in array) //Use to find documents who have a particular value within an array.
+
+//looks like
+db.users.find({number_of_students: {$lt: 15}}).pretty()
